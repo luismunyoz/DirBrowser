@@ -1,0 +1,21 @@
+ext.deps = [
+        'network': [
+                'retrofit': [
+                        'core': "com.squareup.retrofit2:retrofit:$versions.retrofit",
+                        'gson': "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+                ]
+        ],
+        'tooling': [
+                'timber': "com.jakewharton.timber:timber:$versions.timber",
+        ],
+        'test': [
+                'junit5'    : [
+                        'bom'              : "org.junit:junit-bom:$versions.junit5_bom",
+                        'core'             : "org.junit.jupiter:junit-jupiter",
+                        'engine'           : "org.junit.jupiter:junit-jupiter-engine",
+                        'params'           : "org.junit.jupiter:junit-jupiter-params",
+                        'vintage'          : "org.junit.vintage:junit-vintage-engine",
+                        'platform_launcher': "org.junit.platform:junit-platform-launcher",
+                ],
+        ]
+]
