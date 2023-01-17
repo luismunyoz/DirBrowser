@@ -1,15 +1,38 @@
 ext.deps = [
-        'network': [
+        'module'                 : [
+                'mvi': [
+                        'framework': project(':mvi:mvi-framework'),
+                        'android'  : project(':mvi:mvi-android'),
+                ],
+        ],
+        'kotlin'                 : [
+                'language'          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin",
+                'coroutines'        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
+                'coroutines_android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
+        ],
+        'android': [
+                'desugaring'        : "com.android.tools:desugar_jdk_libs:$versions.desugaring",
+        ],
+        'network'                : [
                 'retrofit': [
                         'core': "com.squareup.retrofit2:retrofit:$versions.retrofit",
                         'gson': "com.squareup.retrofit2:converter-gson:$versions.retrofit",
                 ]
         ],
-        'tooling': [
+        'architecture_components': [
+                'lifecycle': [
+                        'runtime'             : "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle",
+                        'runtime_ktx'         : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle",
+                        'common'              : "androidx.lifecycle:lifecycle-common:$versions.lifecycle",
+                        'viewmodel'           : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle",
+                        'viewmodel_savedstate': "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycle",
+                ],
+        ],
+        'tooling'                : [
                 'timber': "com.jakewharton.timber:timber:$versions.timber",
         ],
-        'test': [
-                'junit5'    : [
+        'test'                   : [
+                'junit5': [
                         'bom'              : "org.junit:junit-bom:$versions.junit5_bom",
                         'core'             : "org.junit.jupiter:junit-jupiter",
                         'engine'           : "org.junit.jupiter:junit-jupiter-engine",

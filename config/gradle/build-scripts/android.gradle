@@ -1,0 +1,60 @@
+android {
+    useLibrary 'org.apache.http.legacy'
+    compileSdk versions.compile_sdk
+
+    defaultConfig {
+        minSdk versions.min_sdk
+        targetSdk versions.target_sdk
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+        coreLibraryDesugaringEnabled true
+    }
+
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin/"
+        release.java.srcDirs += "src/release/kotlin/"
+        debug.java.srcDirs += "src/debug/kotlin/"
+        test.java.srcDirs += "src/test/kotlin/"
+        androidTest.java.srcDirs += "src/androidTest/kotlin/"
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+        unitTests.includeAndroidResources = true
+    }
+
+    kotlinOptions {
+        allWarningsAsErrors = Boolean.valueOf(findProperty("ALL_WARNINGS_AS_ERRORS") ?: "true")
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/LICENSE-notice.md'
+        exclude 'MANIFEST.MF'
+    }
+
+    configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'org.jetbrains.kotlin' && details.requested.name == 'kotlin-stdlib' ) {
+                details.useVersion versions.kotlin
+            }
+        }
+    }
+}
+
+dependencies {
+    coreLibraryDesugaring deps.android.desugaring
+
+    testImplementation(platform(deps.test.junit5.bom))
+    testRuntimeOnly(deps.test.junit5.platform_launcher) {
+        because("Only needed to run tests in a version of IntelliJ IDEA that bundles older versions")
+    }
+    testRuntimeOnly deps.test.junit5.engine
+    testRuntimeOnly deps.test.junit5.vintage
+}

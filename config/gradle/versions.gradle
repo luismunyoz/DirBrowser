@@ -1,10 +1,19 @@
 ext.versions = [
-        min_sdk              : 21,
-        compile_sdk          : 33,
-        target_sdk           : 33,
+        min_sdk    : 21,
+        compile_sdk: 33,
+        target_sdk : 33,
 
-        retrofit: "2.9.0",
-        timber : "5.0.1",
+        // Kotlin
+        kotlin     : '1.7.10',
+        coroutines : "1.6.4",
 
-        junit5_bom: "5.9.2"
+        // Android
+        lifecycle  : "2.5.1",
+
+        desugaring : "1.2.2",
+
+        retrofit   : "2.9.0",
+        timber     : "5.0.1",
+
+        junit5_bom : "5.9.2"
 ]

@@ -1,0 +1,35 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+sourceSets {
+    main.java.srcDirs += "src/main/kotlin/"
+    test.java.srcDirs += "src/test/kotlin/"
+}
+
+compileKotlin {
+    kotlinOptions {
+        allWarningsAsErrors = Boolean.valueOf(findProperty("ALL_WARNINGS_AS_ERRORS") ?: "true")
+        jvmTarget = JavaVersion.VERSION_11
+        freeCompilerArgs += "-opt-in=kotlin.ExperimentalStdlibApi"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+        freeCompilerArgs += "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+    }
+}
+
+dependencies {
+
+    testImplementation(platform(deps.test.junit5.bom))
+    testRuntimeOnly(deps.test.junit5.platform_launcher) {
+        because("Only needed to run tests in a version of IntelliJ IDEA that bundles older versions")
+    }
+    testRuntimeOnly deps.test.junit5.engine
+    testRuntimeOnly deps.test.junit5.vintage
+
+    implementation deps.kotlin.coroutines
+}

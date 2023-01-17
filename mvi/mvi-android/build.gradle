@@ -1,0 +1,20 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "${rootProject.projectDir}/config/gradle/build-scripts/android-lib.gradle"
+
+android {
+    namespace 'com.luismunyoz.mvi.android'
+}
+
+dependencies {
+
+    api deps.module.mvi.framework
+
+    implementation deps.kotlin.coroutines
+    implementation deps.architecture_components.lifecycle.viewmodel
+    implementation deps.tooling.timber
+    api deps.architecture_components.lifecycle.viewmodel_savedstate
+}
