@@ -17,3 +17,5 @@ rootProject.name = "DirBrowser"
 include ':app'
 include ':mvi:mvi-framework'
 include ':mvi:mvi-android'
+include ':data'
+include ':domain'

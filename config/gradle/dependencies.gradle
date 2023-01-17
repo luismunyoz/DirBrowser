@@ -12,6 +12,19 @@ ext.deps = [
         ],
         'android': [
                 'desugaring'        : "com.android.tools:desugar_jdk_libs:$versions.desugaring",
+                'appcompat'         : "androidx.appcompat:appcompat:$versions.appcompat",
+                'recyclerview'      : "androidx.recyclerview:recyclerview:$versions.recyclerview",
+                'cardview'          : "androidx.cardview:cardview:$versions.cardview",
+                'core_ktx'          : "androidx.core:core-ktx:$versions.core_ktx",
+                'constraint_layout' : "androidx.constraintlayout:constraintlayout:$versions.constraint_layout",
+                'fragment'          : [
+                        'core': "androidx.fragment:fragment:$versions.fragment",
+                        'ktx' : "androidx.fragment:fragment-ktx:$versions.fragment"
+                ],
+                'activity'          : [
+                        'core': "androidx.activity:activity:$versions.activity",
+                        'ktx' : "androidx.activity:activity-ktx:$versions.activity"
+                ],
         ],
         'network'                : [
                 'retrofit': [
@@ -27,6 +40,12 @@ ext.deps = [
                         'viewmodel'           : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle",
                         'viewmodel_savedstate': "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycle",
                 ],
+        ],
+        'di': [
+                "hilt": [
+                        "android": "com.google.dagger:hilt-android:$versions.hilt",
+                        "compiler": "com.google.dagger:hilt-compiler:$versions.hilt"
+                ]
         ],
         'tooling'                : [
                 'timber': "com.jakewharton.timber:timber:$versions.timber",
