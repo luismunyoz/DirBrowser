@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 apply from: "${rootProject.projectDir}/config/gradle/build-scripts/android-lib.gradle"
@@ -38,10 +40,10 @@ dependencies {
     implementation deps.kotlin.coroutines
 
     implementation deps.di.hilt.android
+    kapt deps.di.hilt.compiler
 
     implementation deps.tooling.timber
 
     implementation deps.network.retrofit.core
-    implementation deps.network.retrofit.gson
     implementation deps.network.logs
 }

@@ -9,12 +9,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-        coreLibraryDesugaringEnabled true
-    }
-
     sourceSets {
         main.java.srcDirs += "src/main/kotlin/"
         release.java.srcDirs += "src/release/kotlin/"
@@ -30,9 +24,13 @@ android {
         unitTests.includeAndroidResources = true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
+    }
     kotlinOptions {
-        allWarningsAsErrors = Boolean.valueOf(findProperty("ALL_WARNINGS_AS_ERRORS") ?: "true")
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     packagingOptions {

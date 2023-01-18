@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">DirBrowser</string>
+    <string name="load_user_error">Could not load User, please try again.</string>
+    <string name="default_title">Browser</string>
+    <string name="title_for_user">Browser for %s</string>
 </resources>

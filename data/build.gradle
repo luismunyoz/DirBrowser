@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 apply from: "${rootProject.projectDir}/config/gradle/build-scripts/android-lib.gradle"
@@ -16,6 +18,7 @@ dependencies {
     implementation deps.module.network
 
     implementation deps.di.hilt.android
+    kapt deps.di.hilt.compiler
 
     implementation deps.kotlin.coroutines
 

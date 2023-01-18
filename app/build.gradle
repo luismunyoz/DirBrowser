@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.dagger.hilt.android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 apply from: "${rootProject.projectDir}/config/gradle/build-scripts/android.gradle"
@@ -36,18 +36,17 @@ android {
             exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
         }
     }
+}
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    hilt {
-        enableAggregatingTask = true
-    }
+hilt {
+    enableAggregatingTask = true
 }
 
 dependencies {
+
+    implementation deps.module.core
+    implementation deps.module.domain
+    implementation deps.module.data
 
     implementation deps.android.appcompat
     implementation deps.android.recyclerview
@@ -65,7 +64,6 @@ dependencies {
     implementation deps.kotlin.coroutines_android
 
     implementation deps.di.hilt.android
-
     kapt deps.di.hilt.compiler
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

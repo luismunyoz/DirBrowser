@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
+    <dimen name="spacing_0_25x">2dp</dimen>
+    <dimen name="spacing_0_5x">4dp</dimen>
+    <dimen name="spacing_1x">8dp</dimen>
+    <dimen name="spacing_1_5x">12dp</dimen>
+    <dimen name="spacing_2x">16dp</dimen>
+    <dimen name="spacing_3x">24dp</dimen>
+    <dimen name="spacing_4x">32dp</dimen>
+    <dimen name="spacing_5x">40dp</dimen>
+    <dimen name="spacing_6x">48dp</dimen>
+</resources>

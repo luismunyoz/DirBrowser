@@ -6,14 +6,14 @@ sourceSets {
 compileKotlin {
     kotlinOptions {
         allWarningsAsErrors = Boolean.valueOf(findProperty("ALL_WARNINGS_AS_ERRORS") ?: "true")
-        jvmTarget = JavaVersion.VERSION_11
+        jvmTarget = JavaVersion.VERSION_1_8
         freeCompilerArgs += "-opt-in=kotlin.ExperimentalStdlibApi"
     }
 }
 
 compileTestKotlin {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
         freeCompilerArgs += "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
     }
 }
