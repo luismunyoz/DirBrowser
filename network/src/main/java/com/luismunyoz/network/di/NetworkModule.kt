@@ -9,6 +9,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -30,6 +31,17 @@ object NetworkModule {
     @Provides
     fun provideLoggingInterceptor(): Interceptor =
         createLoggingInterceptor(BuildConfig.DEBUG)
+
+    @Provides
+    fun provideOkHttpClient(
+        @AuthInterceptorQualifier authInterceptor: Interceptor,
+        @LoggingInterceptorQualifier loggingInterceptor: Interceptor
+    ): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(authInterceptor)
+            .addInterceptor(loggingInterceptor)
+            .build()
+    }
 }
 
 @Module

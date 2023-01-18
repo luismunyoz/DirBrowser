@@ -7,6 +7,7 @@ ext.deps = [
                 'domain': project(':domain'),
                 'core': project(':core'),
                 'data': project(':data'),
+                'network': project(':network')
         ],
         'kotlin'                 : [
                 'language'          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin",

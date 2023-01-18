@@ -13,8 +13,12 @@ dependencies {
 
     implementation deps.module.core
     implementation deps.module.domain
+    implementation deps.module.network
+
+    implementation deps.di.hilt.android
 
     implementation deps.kotlin.coroutines
+
     implementation deps.tooling.timber
     implementation deps.network.retrofit.core
     implementation deps.network.retrofit.gson
