@@ -5,5 +5,7 @@ plugins {
 apply from: "${rootProject.projectDir}/config/gradle/build-scripts/kotlin-lib.gradle"
 
 dependencies {
+    implementation deps.module.core
+
     implementation deps.kotlin.coroutines
 }

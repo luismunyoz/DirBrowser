@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "${rootProject.projectDir}/config/gradle/build-scripts/android-lib.gradle"
+
+android {
+    namespace 'com.luismunyoz.network'
+
+    buildTypes {
+        release {
+            buildConfigField("String", "BASE_URL", "\"" + getSecretVariable("BASE_URL") + "\"")
+            buildConfigField("String", "AUTH_LOGIN", "\"" + getSecretVariable("AUTH_LOGIN") + "\"")
+            buildConfigField("String", "AUTH_PASSWORD", "\"" + getSecretVariable("AUTH_PASSWORD") + "\"")
+        }
+
+        debug {
+            buildConfigField("String", "BASE_URL", "\"" + getSecretVariable("BASE_URL") + "\"")
+            buildConfigField("String", "AUTH_LOGIN", "\"" + getSecretVariable("AUTH_LOGIN") + "\"")
+            buildConfigField("String", "AUTH_PASSWORD", "\"" + getSecretVariable("AUTH_PASSWORD") + "\"")
+        }
+    }
+}
+
+def getSecretVariable(id) {
+    def keysFile = file("keys.properties")
+    def keysProperties = new Properties()
+    keysProperties.load(new FileInputStream(keysFile))
+    def theSecret = keysProperties[id]
+    return theSecret
+}
+
+dependencies {
+
+    implementation deps.module.core
+
+    implementation deps.kotlin.coroutines
+
+    implementation deps.di.hilt.android
+
+    implementation deps.tooling.timber
+
+    implementation deps.network.retrofit.core
+    implementation deps.network.retrofit.gson
+    implementation deps.network.logs
+}

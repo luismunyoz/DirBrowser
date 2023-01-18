@@ -4,6 +4,9 @@ ext.deps = [
                         'framework': project(':mvi:mvi-framework'),
                         'android'  : project(':mvi:mvi-android'),
                 ],
+                'domain': project(':domain'),
+                'core': project(':core'),
+                'data': project(':data'),
         ],
         'kotlin'                 : [
                 'language'          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin",
@@ -30,7 +33,8 @@ ext.deps = [
                 'retrofit': [
                         'core': "com.squareup.retrofit2:retrofit:$versions.retrofit",
                         'gson': "com.squareup.retrofit2:converter-gson:$versions.retrofit",
-                ]
+                ],
+                'logs'    : "com.squareup.okhttp3:logging-interceptor:$versions.logs",
         ],
         'architecture_components': [
                 'lifecycle': [
