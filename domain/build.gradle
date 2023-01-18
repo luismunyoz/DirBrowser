@@ -1,11 +1,18 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm'
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
 }
 
-apply from: "${rootProject.projectDir}/config/gradle/build-scripts/kotlin-lib.gradle"
+apply from: "${rootProject.projectDir}/config/gradle/build-scripts/android-lib.gradle"
+
+android {
+    namespace 'com.luismunyoz.domain'
+}
 
 dependencies {
     implementation deps.module.core
+
+    implementation deps.di.hilt.android
 
     implementation deps.kotlin.coroutines
 }

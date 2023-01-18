@@ -15,7 +15,7 @@ class BrowserRepository @Inject constructor(
         return browserClient.getItems(id)
     }
 
-    override suspend fun getMe(): Result<User> {
+    override suspend fun getUser(): Result<User> {
         return browserClient.getUser()
     }
 }

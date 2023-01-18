@@ -16,6 +16,7 @@ ext.versions = [
         fragment         : '1.5.5',
         activity         : '1.6.1',
         desugaring       : '1.2.2',
+        material         : '1.7.0',
 
         // DI
         hilt             : "2.44",

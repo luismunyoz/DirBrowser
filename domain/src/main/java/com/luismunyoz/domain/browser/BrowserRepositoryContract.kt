@@ -6,7 +6,7 @@ import com.luismunyoz.domain.browser.model.User
 
 interface BrowserRepositoryContract {
 
-    suspend fun getMe(): Result<User>
+    suspend fun getUser(): Result<User>
 
     suspend fun getFolder(id: String): Result<List<Item>>
 }
