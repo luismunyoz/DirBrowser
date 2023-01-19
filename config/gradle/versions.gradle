@@ -24,6 +24,8 @@ ext.versions = [
         // Architecture components
         lifecycle        : "2.5.1",
 
+        // Network and utils
+        picasso          : "2.8",
         retrofit         : "2.9.0",
         logs             : "4.10.0",
         timber           : "5.0.1",

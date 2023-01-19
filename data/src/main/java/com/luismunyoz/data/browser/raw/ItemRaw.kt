@@ -18,9 +18,11 @@ data class ItemRaw(
         private const val IMAGE_CONTENT_TYPE = "image/jpeg"
     }
 
-    private val isImage = contentType == IMAGE_CONTENT_TYPE && !isDirectory && size != null
+    private val isImage
+        get() = contentType == IMAGE_CONTENT_TYPE && !isDirectory && size != null
 
-    private val isFolder = isDirectory
+    private val isFolder
+        get() = isDirectory
 
     fun toDomain(): Item =
         when {

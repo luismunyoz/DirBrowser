@@ -56,6 +56,9 @@ ext.deps = [
         'tooling'                : [
                 'timber': "com.jakewharton.timber:timber:$versions.timber",
         ],
+        'utils'                  : [
+                'picasso': "com.squareup.picasso:picasso:$versions.picasso",
+        ],
         'test'                   : [
                 'junit5': [
                         'bom'              : "org.junit:junit-bom:$versions.junit5_bom",

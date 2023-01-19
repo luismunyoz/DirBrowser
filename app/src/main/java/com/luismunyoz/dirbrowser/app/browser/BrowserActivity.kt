@@ -1,12 +1,14 @@
 package com.luismunyoz.dirbrowser.app.browser
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.luismunyoz.dirbrowser.R
+import com.luismunyoz.dirbrowser.app.browser.list.BrowserListFragment
 import com.luismunyoz.dirbrowser.app.util.viewBinding
 import com.luismunyoz.dirbrowser.databinding.ActivityBrowserBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +32,7 @@ class BrowserActivity : AppCompatActivity() {
 
     private fun setupObservers() {
         viewModel.state
+            .flowWithLifecycle(lifecycle)
             .onEach { render(it) }
             .launchIn(lifecycleScope)
     }
@@ -39,16 +42,26 @@ class BrowserActivity : AppCompatActivity() {
             is UserState.Loading -> {
                 binding.progressCircular.isVisible = true
                 binding.error.isVisible = false
+                binding.fragmentContainer.isVisible = false
             }
             is UserState.Loaded -> {
                 binding.progressCircular.isVisible = false
                 binding.error.isVisible = false
+                binding.fragmentContainer.isVisible = true
                 val user = state.userState.user
-                supportActionBar?.title = getString(R.string.title_for_user, "${user.firstName} ${user.lastName}")
+                supportActionBar?.title = getString(
+                    R.string.title_for_user,
+                    user.rootItem.name,
+                    "${user.firstName} ${user.lastName}"
+                )
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.fragment_container, BrowserListFragment.newInstance(user.rootItem.id))
+                    .commit()
             }
             is UserState.Error -> {
                 binding.progressCircular.isVisible = false
                 binding.error.isVisible = true
+                binding.fragmentContainer.isVisible = false
             }
         }
     }

@@ -47,6 +47,7 @@ dependencies {
     implementation deps.module.core
     implementation deps.module.domain
     implementation deps.module.data
+    implementation deps.module.network
 
     implementation deps.android.appcompat
     implementation deps.android.recyclerview
@@ -59,6 +60,8 @@ dependencies {
     implementation deps.android.material
 
     implementation deps.module.mvi.android
+
+    implementation deps.utils.picasso
 
     implementation deps.kotlin.coroutines
     implementation deps.kotlin.coroutines_android
