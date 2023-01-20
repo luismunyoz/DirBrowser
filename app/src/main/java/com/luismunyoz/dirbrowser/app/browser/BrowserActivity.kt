@@ -9,6 +9,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.luismunyoz.dirbrowser.R
 import com.luismunyoz.dirbrowser.app.browser.list.BrowserListFragment
+import com.luismunyoz.dirbrowser.app.imageviewer.ImageViewerActivity
 import com.luismunyoz.dirbrowser.app.util.viewBinding
 import com.luismunyoz.dirbrowser.databinding.ActivityBrowserBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -100,7 +101,13 @@ class BrowserActivity : AppCompatActivity() {
                     .commit()
             }
             is BrowserContract.State.Effect.NavigateToImage -> {
-
+                startActivity(
+                    ImageViewerActivity.getIntent(
+                        this,
+                        effect.image.name,
+                        effect.image.id
+                    )
+                )
             }
             BrowserContract.State.Effect.None -> {}
         }
