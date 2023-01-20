@@ -67,15 +67,16 @@ class BrowserActivity : AppCompatActivity() {
                 binding.error.isVisible = false
                 binding.fragmentContainer.isVisible = true
                 val user = state.user
-                supportActionBar?.title = getString(
+                val title = getString(
                     R.string.title_for_user,
                     user.rootItem.name,
                     "${user.firstName} ${user.lastName}"
                 )
+                supportActionBar?.title = title
                 supportFragmentManager.beginTransaction()
                     .add(
                         R.id.fragment_container,
-                        BrowserListFragment.newInstance(user.rootItem.id, user.rootItem.name)
+                        BrowserListFragment.newInstance(user.rootItem.id, title)
                     )
                     .commit()
             }

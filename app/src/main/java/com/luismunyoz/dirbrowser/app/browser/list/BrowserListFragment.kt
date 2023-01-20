@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -19,8 +18,8 @@ import com.luismunyoz.dirbrowser.R
 import com.luismunyoz.dirbrowser.app.browser.BrowserContract
 import com.luismunyoz.dirbrowser.app.browser.BrowserViewModel
 import com.luismunyoz.dirbrowser.app.browser.list.model.toUIItem
+import com.luismunyoz.dirbrowser.app.util.AdaptiveSpacingItemDecoration
 import com.luismunyoz.dirbrowser.databinding.FragmentBrowserListBinding
-import com.luismunyoz.domain.browser.model.Item
 import com.luismunyoz.network.di.BaseURLQualifier
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +45,7 @@ class BrowserListFragment private constructor() : Fragment() {
     companion object {
         private const val FOLDER_ID = "folder_id"
         private const val NAME = "name"
+        private const val GRID_SPAN_COUNT = 2
 
         fun newInstance(folderId: String, name: String) = BrowserListFragment().apply {
             arguments = bundleOf(
@@ -103,8 +103,14 @@ class BrowserListFragment private constructor() : Fragment() {
     private fun initViews(binding: FragmentBrowserListBinding) {
         adapter = BrowserListAdapter(baseUrl, picasso)
         binding.list.apply {
-            layoutManager = GridLayoutManager(context, 2)
+            layoutManager = GridLayoutManager(context, GRID_SPAN_COUNT)
             adapter = this@BrowserListFragment.adapter
+            addItemDecoration(
+                AdaptiveSpacingItemDecoration(
+                    resources.getDimensionPixelSize(R.dimen.spacing_2x),
+                    true
+                )
+            )
         }
         adapter.listener = object : BrowserListAdapter.Listener {
 
@@ -152,7 +158,7 @@ class BrowserListFragment private constructor() : Fragment() {
     }
 
     private fun effect(effect: BrowserListContract.State.Effect) {
-        when(effect) {
+        when (effect) {
             is BrowserListContract.State.Effect.NavigateToItem ->
                 parentViewModel.onEvent(BrowserContract.Event.OnItemClicked(effect.item))
             BrowserListContract.State.Effect.None -> {}
