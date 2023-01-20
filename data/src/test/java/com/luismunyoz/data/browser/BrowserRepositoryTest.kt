@@ -7,10 +7,7 @@ import com.luismunyoz.data.browser.network.BrowserClient
 import com.luismunyoz.domain.browser.model.Item
 import com.luismunyoz.domain.browser.model.User
 import io.kotest.matchers.shouldBe
-import io.mockk.coEvery
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
+import io.mockk.*
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -25,7 +22,25 @@ internal class BrowserRepositoryTest {
     private val repository = BrowserRepository(browserClientMock, memoryCacheMock)
 
     @BeforeEach
-    fun before() {}
+    fun before() {
+    }
+
+    @Nested
+    @DisplayName("Request User")
+    inner class RequestUser {
+
+        @Test
+        fun `should return result from the API`() = runTest {
+            val mockedUser = mockk<User>()
+            coEvery { browserClientMock.getUser() } returns successOf(mockedUser)
+
+            val result = repository.getUser()
+
+            coVerify { browserClientMock.getUser() }
+
+            result shouldBe successOf(mockedUser)
+        }
+    }
 
     @Nested
     @DisplayName("Load Items - Empty cache")
@@ -37,67 +52,54 @@ internal class BrowserRepositoryTest {
         }
 
         @Test
-        fun `given successful response, it should return api response and update cache`() = runTest {
-            val mockedList = mockk<List<Item>>()
-            coEvery { browserClientMock.getItems(any()) } returns successOf(mockedList)
+        fun `given successful response, it should return api response and update cache`() =
+            runTest {
+                val mockedList = mockk<List<Item>>()
+                coEvery { browserClientMock.getItems(any()) } returns successOf(mockedList)
 
-            val result = repository.getFolder("id")
+                val result = repository.getFolder("id")
 
-            verify {
-                memoryCacheMock.store("id", mockedList)
+                verify {
+                    memoryCacheMock.store("id", mockedList)
+                }
+
+                result shouldBe successOf(mockedList)
             }
-
-            result shouldBe successOf(mockedList)
-        }
 
         @Test
-        fun `given failing response, it should return api response and not update cache`() = runTest {
-            coEvery { browserClientMock.getItems(any()) } returns NetworkError
+        fun `given failing response, it should return api response and not update cache`() =
+            runTest {
+                coEvery { browserClientMock.getItems(any()) } returns NetworkError
 
-            val result = repository.getFolder("id")
+                val result = repository.getFolder("id")
 
-            verify(exactly = 0) {
-                memoryCacheMock.store(any(), any())
+                verify(exactly = 0) {
+                    memoryCacheMock.store(any(), any())
+                }
+
+                result shouldBe NetworkError
             }
-
-            result shouldBe NetworkError
-        }
     }
 
     @Nested
     @DisplayName("Load Items - Populated cache")
     inner class PopulatedCache {
 
-        @BeforeEach
-        fun before() {
-            every { memoryCacheMock.getItems(any()) } returns null
-        }
-
         @Test
-        fun `given successful response, it should return cache and not call api`() = runTest {
+        fun `it should return the value stored in the cache`() = runTest {
             val mockedList = mockk<List<Item>>()
-            coEvery { browserClientMock.getItems(any()) } returns successOf(mockedList)
-
-            val result = repository.getFolder("id")
-
-            verify(exactly = 0) {
-                memoryCacheMock.store("id", mockedList)
-            }
-
-            result shouldBe successOf(mockedList)
-        }
-
-        @Test
-        fun `given failing response, it should return api response and not update cache`() = runTest {
-            coEvery { browserClientMock.getItems(any()) } returns NetworkError
+            every { memoryCacheMock.getItems(any()) } returns mockedList
 
             val result = repository.getFolder("id")
 
             verify(exactly = 0) {
                 memoryCacheMock.store(any(), any())
             }
+            coVerify(exactly = 0) {
+                browserClientMock.getItems(any())
+            }
 
-            result shouldBe NetworkError
+            result shouldBe successOf(mockedList)
         }
     }
 

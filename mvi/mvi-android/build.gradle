@@ -7,6 +7,10 @@ apply from: "${rootProject.projectDir}/config/gradle/build-scripts/android-lib.g
 
 android {
     namespace 'com.luismunyoz.mvi.android'
+
+    kotlinOptions {
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn,kotlinx.coroutines.ExperimentalCoroutinesApi"
+    }
 }
 
 dependencies {
@@ -16,4 +20,11 @@ dependencies {
     implementation deps.kotlin.coroutines
     implementation deps.architecture_components.lifecycle.viewmodel
     implementation deps.tooling.timber
+
+    testImplementation deps.test.junit5.core
+    testImplementation deps.test.junit5.params
+    testImplementation deps.test.mockk
+    testImplementation deps.test.coroutines
+    testImplementation deps.test.kotest.assertions
+    testImplementation deps.test.turbine
 }

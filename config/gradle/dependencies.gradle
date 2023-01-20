@@ -60,7 +60,7 @@ ext.deps = [
                 'picasso': "com.squareup.picasso:picasso:$versions.picasso",
         ],
         'test'                   : [
-                'junit5': [
+                'junit5'    : [
                         'bom'              : "org.junit:junit-bom:$versions.junit5_bom",
                         'core'             : "org.junit.jupiter:junit-jupiter",
                         'engine'           : "org.junit.jupiter:junit-jupiter-engine",
@@ -68,10 +68,11 @@ ext.deps = [
                         'vintage'          : "org.junit.vintage:junit-vintage-engine",
                         'platform_launcher': "org.junit.platform:junit-platform-launcher",
                 ],
-                'mockk': "io.mockk:mockk:$versions.mockk",
+                'mockk'     : "io.mockk:mockk:$versions.mockk",
                 'coroutines': "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines",
                 'kotest'    : [
                         'assertions': "io.kotest:kotest-assertions-core-jvm:$versions.kotest"
                 ],
+                'turbine'   : "app.cash.turbine:turbine:$versions.turbine",
         ]
 ]

@@ -33,5 +33,6 @@ ext.versions = [
         // Test
         junit5_bom       : "5.9.2",
         mockk            : "1.13.3",
-        kotest           : "5.5.4"
+        kotest           : "5.5.4",
+        turbine          : "0.12.1"
 ]

@@ -15,4 +15,10 @@ dependencies {
     implementation deps.di.hilt.android
 
     implementation deps.kotlin.coroutines
+
+    testImplementation deps.test.junit5.core
+    testImplementation deps.test.junit5.params
+    testImplementation deps.test.mockk
+    testImplementation deps.test.coroutines
+    testImplementation deps.test.kotest.assertions
 }
