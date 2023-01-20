@@ -68,5 +68,10 @@ ext.deps = [
                         'vintage'          : "org.junit.vintage:junit-vintage-engine",
                         'platform_launcher': "org.junit.platform:junit-platform-launcher",
                 ],
+                'mockk': "io.mockk:mockk:$versions.mockk",
+                'coroutines': "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines",
+                'kotest'    : [
+                        'assertions': "io.kotest:kotest-assertions-core-jvm:$versions.kotest"
+                ],
         ]
 ]

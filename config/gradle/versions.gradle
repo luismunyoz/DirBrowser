@@ -30,5 +30,8 @@ ext.versions = [
         logs             : "4.10.0",
         timber           : "5.0.1",
 
-        junit5_bom       : "5.9.2"
+        // Test
+        junit5_bom       : "5.9.2",
+        mockk            : "1.13.3",
+        kotest           : "5.5.4"
 ]

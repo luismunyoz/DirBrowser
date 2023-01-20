@@ -25,4 +25,10 @@ dependencies {
     implementation deps.tooling.timber
     implementation deps.network.retrofit.core
     implementation deps.network.retrofit.gson
+
+    testImplementation deps.test.junit5.core
+    testImplementation deps.test.junit5.params
+    testImplementation deps.test.mockk
+    testImplementation deps.test.coroutines
+    testImplementation deps.test.kotest.assertions
 }
