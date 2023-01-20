@@ -15,11 +15,15 @@ data class ItemRaw(
 ) {
 
     companion object {
-        private const val IMAGE_CONTENT_TYPE = "image/jpeg"
+        private const val IMAGE_CONTENT_TYPE_JPEG = "image/jpeg"
+        private const val IMAGE_CONTENT_TYPE_PNG = "image/png"
     }
 
     private val isImage
-        get() = contentType == IMAGE_CONTENT_TYPE && !isDirectory && size != null
+        get() = contentType in listOf(
+            IMAGE_CONTENT_TYPE_JPEG,
+            IMAGE_CONTENT_TYPE_PNG
+        ) && !isDirectory && size != null
 
     private val isFolder
         get() = isDirectory

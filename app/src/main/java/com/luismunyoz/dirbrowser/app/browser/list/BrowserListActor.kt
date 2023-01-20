@@ -15,6 +15,8 @@ class BrowserListActor @Inject constructor(
     override fun invoke(event: BrowserListContract.Event): Flow<BrowserListContract.Action> {
         return when (event) {
             is BrowserListContract.Event.OnInitialized -> loadFolder(event.id)
+            BrowserListContract.Event.OnEffectConsumed -> flow { emit(BrowserListContract.Action.OnEffectConsumed) }
+            is BrowserListContract.Event.OnItemClicked -> flow { emit(BrowserListContract.Action.NavigateToItem(event.id))}
         }
     }
 
@@ -22,7 +24,13 @@ class BrowserListActor @Inject constructor(
         emit(BrowserListContract.Action.ShowLoading)
 
         getFolderUseCase.invoke(id)
-            .onSuccess { emit(BrowserListContract.Action.ShowFolder(it)) }
+            .onSuccess {
+                if(it.isEmpty()) {
+                    emit(BrowserListContract.Action.ShowEmptyView)
+                } else {
+                    emit(BrowserListContract.Action.ShowFolder(it))
+                }
+            }
             .onError { emit(BrowserListContract.Action.ShowError(it.toString())) }
     }
 }

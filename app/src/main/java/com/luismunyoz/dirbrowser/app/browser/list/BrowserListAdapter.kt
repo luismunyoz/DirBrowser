@@ -8,6 +8,7 @@ import com.luismunyoz.dirbrowser.app.browser.list.model.ItemUIItem
 import com.luismunyoz.dirbrowser.databinding.ItemFolderBinding
 import com.luismunyoz.dirbrowser.databinding.ItemImageBinding
 import com.luismunyoz.dirbrowser.databinding.ItemOtherBinding
+import com.luismunyoz.domain.browser.model.Item
 import com.squareup.picasso.Picasso
 
 class BrowserListAdapter(
@@ -62,6 +63,8 @@ class BrowserListAdapter(
                     modified.text = item.modified
                     picasso
                         .load(item.getUrl(baseUrl))
+                        .fit()
+                        .centerCrop()
                         .into(image)
                     card.setOnClickListener {
                         listener?.onItemClicked(item.id)

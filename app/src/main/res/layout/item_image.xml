@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,8 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/spacing_1x">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/image"
@@ -33,27 +32,36 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/name"
                 style="@style/TextAppearance.Material3.TitleSmall"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_1x"
+                android:layout_marginTop="@dimen/spacing_1x"
+                android:layout_marginEnd="@dimen/spacing_1x"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:gravity="center"
                 app:layout_constraintBottom_toTopOf="@+id/modified"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image"
-                tools:text="The title"
-                android:maxLines="1"
-                android:ellipsize="end"/>
+                tools:text="The title" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/modified"
                 style="@style/TextAppearance.Material3.LabelSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_1x"
                 android:layout_marginTop="@dimen/spacing_0_5x"
+                android:layout_marginEnd="@dimen/spacing_1x"
+                android:layout_marginBottom="@dimen/spacing_1x"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="Modified"/>
+                tools:text="Modified" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </com.luismunyoz.dirbrowser.app.util.SquaredFrameLayout>
