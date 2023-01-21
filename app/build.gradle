@@ -70,6 +70,14 @@ dependencies {
     implementation deps.di.hilt.android
     kapt deps.di.hilt.compiler
 
+    testImplementation deps.test.junit5.core
+    testImplementation deps.test.junit5.params
+    testImplementation deps.test.mockk
+    testImplementation deps.test.coroutines
+    testImplementation deps.test.kotest.assertions
+    testImplementation deps.test.fixtures
+    testImplementation deps.test.turbine
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

@@ -16,12 +16,11 @@ class BrowserContract {
 
     data class State(
         val userState: UserState,
-        val effect: Effect,
-        val shownItem: Item?
+        val effect: Effect
     ) : UiState {
 
         companion object {
-            fun initial() = State(UserState.Loading, Effect.None, null)
+            fun initial() = State(UserState.Loading, Effect.None)
         }
 
         sealed class Effect {

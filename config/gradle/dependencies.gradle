@@ -74,5 +74,6 @@ ext.deps = [
                         'assertions': "io.kotest:kotest-assertions-core-jvm:$versions.kotest"
                 ],
                 'turbine'   : "app.cash.turbine:turbine:$versions.turbine",
+                'fixtures'  : "com.appmattus.fixture:fixture:$versions.fixtures"
         ]
 ]
