@@ -74,6 +74,13 @@ ext.deps = [
                         'assertions': "io.kotest:kotest-assertions-core-jvm:$versions.kotest"
                 ],
                 'turbine'   : "app.cash.turbine:turbine:$versions.turbine",
-                'fixtures'  : "com.appmattus.fixture:fixture:$versions.fixtures"
+                'fixtures'  : "com.appmattus.fixture:fixture:$versions.fixtures",
+                'hilt'      : "com.google.dagger:hilt-android-testing:$versions.hilt",
+                'androidx'  : [
+                        'espresso'   : "androidx.test.espresso:espresso-core:$versions.espresso",
+                        'test_runner': "androidx.test:runner:$versions.androidx_test",
+                        'test_rules' : "androidx.test:rules:$versions.androidx_test",
+                        'junit'      : "androidx.test.ext:junit:$versions.androidx_junit"
+                ]
         ]
 ]

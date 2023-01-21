@@ -35,5 +35,8 @@ ext.versions = [
         mockk            : "1.13.3",
         kotest           : "5.5.4",
         turbine          : "0.12.1",
-        fixtures         : "1.2.0"
+        fixtures         : "1.2.0",
+        androidx_test    : "1.4.0",
+        espresso         : "3.5.1",
+        androidx_junit   : "1.1.5",
 ]

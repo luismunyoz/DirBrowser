@@ -14,6 +14,8 @@ android {
         applicationId "com.luismunyoz.dirbrowser"
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "com.luismunyoz.dirbrowser.util.CustomTestRunner"
     }
 
     buildTypes {
@@ -78,8 +80,14 @@ dependencies {
     testImplementation deps.test.fixtures
     testImplementation deps.test.turbine
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation deps.module.network
+    androidTestImplementation deps.test.androidx.junit
+    androidTestImplementation deps.test.androidx.espresso
+    androidTestImplementation deps.test.androidx.test_runner
+    androidTestImplementation deps.test.androidx.test_rules
+    androidTestImplementation deps.test.hilt
+    androidTestImplementation deps.test.fixtures
+    kaptAndroidTest deps.di.hilt.compiler
 }
 
 // Allow references to generated code
